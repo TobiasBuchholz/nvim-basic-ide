@@ -97,11 +97,12 @@ cmp.setup {
     format = function(entry, vim_item)
       vim_item.kind = kind_icons[vim_item.kind]
       vim_item.menu = ({
-        nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
-        buffer = "",
-        path = "",
+        nvim_lsp = "[lsp]",
+        nvim_lua = "[lua]",
+        luasnip = "[luasnip]",
+        buffer = "[buf]",
+        path = "[path]",
+        cmp_bootstrap = "[bs]",
         emoji = "",
       })[entry.source.name]
       return vim_item
@@ -113,6 +114,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "cmp_bootstrap" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,

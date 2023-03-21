@@ -11,8 +11,8 @@ possession.setup {
   logfile = false,
   prompt_no_cr = false,
   autosave = {
-      current = false,  -- or fun(name): boolean
-      tmp = false,  -- or fun(): boolean
+      current = true,  -- or fun(name): boolean
+      tmp = true,  -- or fun(): boolean
       tmp_name = 'tmp',
       on_load = true,
       on_quit = true,

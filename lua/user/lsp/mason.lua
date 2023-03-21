@@ -8,6 +8,8 @@ local servers = {
 	"jsonls",
 	"yamlls",
   "csharp_ls",
+  "ruby_ls",
+  "solargraph"
 }
 
 local settings = {

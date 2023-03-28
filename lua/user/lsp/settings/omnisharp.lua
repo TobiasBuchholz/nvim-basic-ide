@@ -31,5 +31,5 @@ return {
   sdk_include_prereleases = true,
 
   -- Only run analyzers against open files when 'enableRoslynAnalyzers' is true
-  analyze_open_documents_only = true,
+  analyze_open_documents_only = false,
 }

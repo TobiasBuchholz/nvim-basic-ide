@@ -57,6 +57,13 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+-- Terminal --
+-- Better terminal navigation
+keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
+keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
+keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
+keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
+
 -- Plugins --
 
 -- NvimTree

@@ -23,10 +23,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize buffers
-keymap("n", "<C-S-J>", ":resize -2<CR>", opts)
-keymap("n", "<C-S-K>", ":resize +2<CR>", opts)
-keymap("n", "<C-S-L>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-S-H>", ":vertical resize +2<CR>", opts)
+keymap("n", "<M-S-j>", ":resize -2<CR>", opts)
+keymap("n", "<M-S-k>", ":resize +2<CR>", opts)
+keymap("n", "<M-S-l>", ":vertical resize -2<CR>", opts)
+keymap("n", "<M-S-h>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)

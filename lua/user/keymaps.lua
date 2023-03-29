@@ -22,11 +22,11 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- Resize buffers
+keymap("n", "<C-S-J>", ":resize -2<CR>", opts)
+keymap("n", "<C-S-K>", ":resize +2<CR>", opts)
+keymap("n", "<C-S-L>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-S-H>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)

@@ -28,8 +28,9 @@ function MauiBuildiOS(Opts)
   vim.cmd(':exe "normal G"')
 end
 
-function MauiBuildAndroid()
-  local command = 'dotnet build -t:Run -f net6.0-android && adb logcat'
+function MauiBuildAndroid(Opts)
+  local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
+  local command = 'dotnet build ' .. project .. ' -t:Run -f net6.0-android && adb logcat'
   vim.cmd('split | terminal')
   vim.cmd(':call jobsend(b:terminal_job_id, "' .. command .. '\\n")')
   vim.cmd(':set nonumber')
@@ -126,6 +127,15 @@ local function maui_ios_completions(ArgLead, _,_)
   end
 end
 
+local function maui_android_completions(ArgLead, _,_)
+  if string.starts(ArgLead, '-p') then
+    return {
+      "-p sample/Playground/Playground.csproj",
+      "-p tests/Plugin.Firebase.IntegrationTests/Plugin.Firebase.IntegrationTests.csproj"
+    }
+  end
+end
+
 local function pmx_ios_completions(ArgLead, _,_)
   if string.starts(ArgLead, '-d') then
     return {
@@ -146,7 +156,7 @@ end
 --
 
 vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='?', complete=maui_ios_completions })
-vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, {})
+vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, { nargs='?', complete=maui_android_completions })
 vim.api.nvim_create_user_command("MauiClean", MauiClean, {})
 vim.api.nvim_create_user_command("MauiRestoreNuget", MauiRestoreNuget, {})
 vim.api.nvim_create_user_command("MauiExit", MauiExit, {})

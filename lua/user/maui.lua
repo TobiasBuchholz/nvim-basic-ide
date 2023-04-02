@@ -43,7 +43,7 @@ end
 
 function MauiClean()
   open_terminal_split()
-  send_terminal_command('dotnet restore')
+  send_terminal_command('dotnet clean')
 end
 
 function MauiDeleteBinAndObjFolders()

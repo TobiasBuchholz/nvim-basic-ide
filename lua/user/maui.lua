@@ -6,10 +6,39 @@ function string.starts(String, Start)
    return string.sub(String, 1, string.len(Start)) == Start
 end
 
+local function get_window_name(window_id)
+  local bufnr = vim.api.nvim_win_get_buf(window_id)
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  return bufname
+end
+
+local function get_all_window_names()
+  local window_ids = vim.api.nvim_list_wins()
+  local window_names = {}
+  for _, id in ipairs(window_ids) do
+      local name = get_window_name(id)
+      if name ~= '' then
+          table.insert(window_names, name)
+      end
+  end
+  return window_names
+end
+
+local function is_terminal_open()
+  for _, name in ipairs(get_all_window_names()) do
+    if string.starts(name, 'term://') then
+      return true
+    end
+  end
+  return false
+end
+
 local function open_terminal_split()
-  vim.cmd('split | terminal')
-  vim.cmd(':set nonumber')
-  vim.cmd(':exe "normal G"')
+  if not is_terminal_open() then
+    vim.cmd('split | terminal')
+    vim.cmd(':set nonumber')
+    vim.cmd(':exe "normal G"')
+  end
 end
 
 local function send_terminal_command(Command)

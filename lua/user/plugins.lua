@@ -55,12 +55,12 @@ return packer.startup(function(use)
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "a52f078026b27694d2290e34efa61a6e4a690621" }
   use { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" }
-  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "6ae82ac3f06a60dba25275f475108a6897b4a802" }
   use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
-  use { "ggandor/lightspeed.nvim" }
-  use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, })
+  use { "ggandor/lightspeed.nvim", commit = "299eefa6a9e2d881f1194587c573dad619fdb96f" }
+  use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, commit = "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96", })
 
   -- Colorschemes
   use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }
@@ -72,7 +72,7 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
-  use { "rambhosale/cmp-bootstrap.nvim", after = "nvim-cmp", event = "InsertEnter" }
+  use { "rambhosale/cmp-bootstrap.nvim", after = "nvim-cmp", event = "InsertEnter", commit = "42ecec1c27f5d5fe3915bc103a2ef649eac1073c" }
 
   -- snippets
   use { "L3MON4D3/LuaSnip", commit = "8f8d493e7836f2697df878ef9c128337cbf2bb84" } --snippet engine
@@ -90,10 +90,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac",
-  }
+  use { "nvim-treesitter/nvim-treesitter", commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac" }
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" }

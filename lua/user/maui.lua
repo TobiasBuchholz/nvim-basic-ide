@@ -6,43 +6,8 @@ function string.starts(String, Start)
    return string.sub(String, 1, string.len(Start)) == Start
 end
 
-local function get_window_name(window_id)
-  local bufnr = vim.api.nvim_win_get_buf(window_id)
-  local bufname = vim.api.nvim_buf_get_name(bufnr)
-  return bufname
-end
-
-local function get_all_window_names()
-  local window_ids = vim.api.nvim_list_wins()
-  local window_names = {}
-  for _, id in ipairs(window_ids) do
-      local name = get_window_name(id)
-      if name ~= '' then
-          table.insert(window_names, name)
-      end
-  end
-  return window_names
-end
-
-local function is_terminal_open()
-  for _, name in ipairs(get_all_window_names()) do
-    if string.starts(name, 'term://') then
-      return true
-    end
-  end
-  return false
-end
-
-local function open_terminal_split()
-  if not is_terminal_open() then
-    vim.cmd('split | terminal')
-    vim.cmd(':set nonumber')
-    vim.cmd(':exe "normal G"')
-  end
-end
-
 local function send_terminal_command(Command)
-  vim.cmd(':call jobsend(b:terminal_job_id, "' .. Command .. '\\n")')
+  vim.cmd(":TermExec cmd='" .. Command .. "'")
 end
 
 local function get_device_id(device_name)
@@ -60,18 +25,15 @@ function MauiBuildiOS(Opts)
   local _,_,_, device_name = string.find(Opts.args, "(-d)%s'([^']*)'")
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
   local device_id = get_device_id(device_name)
-  open_terminal_split()
   send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net6.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
 end
 
 function MauiBuildAndroid(Opts)
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
-  open_terminal_split()
   send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net6.0-android && adb logcat')
 end
 
 function MauiClean()
-  open_terminal_split()
   send_terminal_command('dotnet clean')
 end
 
@@ -82,14 +44,12 @@ function MauiDeleteBinAndObjFolders()
 end
 
 function MauiRestoreNuget()
-  open_terminal_split()
   send_terminal_command('dotnet restore')
 end
 
 function MauiCreateFirebaseNugetPackage(Opts)
   local _,_, version = string.find(Opts.args, "-v%s([^%s]*)")
   local _,_, project_name = string.find(Opts.args, "-p%s([^%s]*)")
-  open_terminal_split()
   send_terminal_command('dotnet restore')
   send_terminal_command('rm -r src/' .. project_name .. '/bin')
   send_terminal_command('rm -r src/' .. project_name .. '/obj')
@@ -102,7 +62,6 @@ end
 
 function MauiCreateAllFirebaseNugetPackages(Opts)
   local _,_, version = string.find(Opts.args, "-v%s([^%s]*)")
-  open_terminal_split()
   send_terminal_command('find . -type d -name bin -prune -exec rm -rf {} \\;')
   send_terminal_command('find . -type d -name obj -prune -exec rm -rf {} \\;')
   send_terminal_command('rm -r nupkgs/')
@@ -144,8 +103,6 @@ function PmxBuildiOS(Opts)
   local _,_, configuration = string.find(Opts.args, "-c%s([^%s]*)")
   local device_id = get_device_id(device_name)
 
-  open_terminal_split()
-
   if configuration == 'Debug-iOS-Simulator' then
    send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Simulator && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --launchsim=PressMatrix.UI.iOS/bin/iPhoneSimulator/Debug/PressMatrix.UI.iOS.app --device::v2:udid=' .. device_id)
   elseif configuration == 'Debug-iOS-Tests-Simulator' then
@@ -154,22 +111,18 @@ function PmxBuildiOS(Opts)
 end
 
 function PmxBuildAndroid()
-  open_terminal_split()
   send_terminal_command('msbuild /t:Build /p:AndroidBuildApplicationPackage=true /p:Configuration=Debug-Android && adb install PressMatrix.UI.Droid/bin/Debug/com.pressmatrix.development-Signed.apk && adb shell monkey -p com.pressmatrix.development 1 && adb logcat')
 end
 
 function MsBuildUpdateAndroidResources()
-  open_terminal_split()
   send_terminal_command('msbuild /t:UpdateAndroidResources')
 end
 
 function MsBuildClean()
-  open_terminal_split()
   send_terminal_command('msbuild /t:Clean')
 end
 
 function MsBuildRestoreNuget()
-  open_terminal_split()
   send_terminal_command('nuget restore')
 end
 

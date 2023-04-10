@@ -18,6 +18,7 @@ dashboard.section.buttons.val = {
   dashboard.button("w", " " .. " Find workspace", ":lua require('telescope').extensions.possession.list()<CR>"),
   dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
   dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
+  dashboard.button("n", " " .. " Google keep notes", ":Telescope gkeep <CR>"),
   dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }

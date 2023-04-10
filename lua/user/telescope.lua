@@ -22,4 +22,12 @@ telescope.setup {
       },
     },
   },
+  extensions = {
+    gkeep = {
+      find_method = "all_text",
+      link_method = "title",
+    },
+  },
 }
+
+telescope.load_extension('gkeep')

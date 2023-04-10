@@ -62,6 +62,7 @@ return packer.startup(function(use)
   use { "ggandor/lightspeed.nvim", commit = "299eefa6a9e2d881f1194587c573dad619fdb96f" }
   use { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, commit = "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96", }
   use { 'stevearc/gkeep.nvim', run = ':UpdateRemotePlugins', commit = "eeb4f0e94bc10c3031f417c9d6adddfb2f104117" }
+  use { 'fgheng/winbar.nvim', commit = "13739fdb31be51a1000486189662596f07a59a31" }
 
   -- Colorschemes
   use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }

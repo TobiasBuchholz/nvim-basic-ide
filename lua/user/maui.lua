@@ -1,4 +1,10 @@
 --
+-- setup
+--
+
+vim.notify = require("notify")
+
+--
 -- helper functions
 --
 
@@ -40,7 +46,7 @@ end
 function MauiDeleteBinAndObjFolders()
   os.execute('find . -type d -name bin -prune -exec rm -rf {} \\;')
   os.execute('find . -type d -name obj -prune -exec rm -rf {} \\;')
-  print('All bin and obj folders successfully deleted!')
+  vim.notify('All bin and obj folders successfully deleted!', 'info', { title = 'maui.lua' })
 end
 
 function MauiRestoreNuget()
@@ -57,7 +63,7 @@ function MauiCreateFirebaseNugetPackage(Opts)
   send_terminal_command('dotnet clean')
   send_terminal_command('dotnet build src/' .. project_name .. '/' .. project_name .. '.csproj -c Release')
   send_terminal_command('dotnet pack src/' .. project_name .. '/' .. project_name .. '.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  print('Nuget package created successfully!')
+  vim.notify('Nuget package created successfully!', 'info', { title = 'maui.lua' })
 end
 
 function MauiCreateAllFirebaseNugetPackages(Opts)

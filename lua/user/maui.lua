@@ -54,7 +54,6 @@ function MauiRestoreNuget()
 end
 
 function MauiCreateFirebaseNugetPackage(Opts)
-  local _,_, version = string.find(Opts.args, "-v%s([^%s]*)")
   local _,_, project_name = string.find(Opts.args, "-p%s([^%s]*)")
   send_terminal_command('dotnet restore')
   send_terminal_command('rm -r src/' .. project_name .. '/bin')
@@ -62,14 +61,12 @@ function MauiCreateFirebaseNugetPackage(Opts)
   send_terminal_command('dotnet restore')
   send_terminal_command('dotnet clean')
   send_terminal_command('dotnet build src/' .. project_name .. '/' .. project_name .. '.csproj -c Release')
-  send_terminal_command('dotnet pack src/' .. project_name .. '/' .. project_name .. '.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
+  send_terminal_command('dotnet pack src/' .. project_name .. '/' .. project_name .. '.csproj -c Release -o nupkgs/')
   vim.notify('Nuget package created successfully!', 'info', { title = 'maui.lua' })
 end
 
-function MauiCreateAllFirebaseNugetPackages(Opts)
-  local _,_, version = string.find(Opts.args, "-v%s([^%s]*)")
-  send_terminal_command('find . -type d -name bin -prune -exec rm -rf {} \\;')
-  send_terminal_command('find . -type d -name obj -prune -exec rm -rf {} \\;')
+function MauiCreateAllFirebaseNugetPackages()
+  MauiDeleteBinAndObjFolders()
   send_terminal_command('rm -r nupkgs/')
   send_terminal_command('dotnet restore')
   send_terminal_command('dotnet clean')
@@ -85,23 +82,18 @@ function MauiCreateAllFirebaseNugetPackages(Opts)
   send_terminal_command('dotnet build src/Functions/Functions.csproj -c Release')
   send_terminal_command('dotnet build src/RemoteConfig/RemoteConfig.csproj -c Release')
   send_terminal_command('dotnet build src/Storage/Storage.csproj -c Release')
-  send_terminal_command('dotnet pack src/Analytics/Analytics.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Auth/Auth.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Auth.Facebook/Auth.Facebook.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Bundled/Bundled.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/CloudMessaging/CloudMessaging.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Core/Core.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Crashlytics/Crashlytics.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/DynamicLinks/DynamicLinks.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Firestore/Firestore.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Functions/Functions.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/RemoteConfig/RemoteConfig.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-  send_terminal_command('dotnet pack src/Storage/Storage.csproj -c Release -o nupkgs/ -p:PackageVersion=' .. version)
-end
-
-function MauiExit()
-  vim.cmd(':exe "normal Q"')
-  vim.cmd(':q')
+  send_terminal_command('dotnet pack src/Analytics/Analytics.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Auth/Auth.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Auth.Facebook/Auth.Facebook.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Bundled/Bundled.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/CloudMessaging/CloudMessaging.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Core/Core.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Crashlytics/Crashlytics.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/DynamicLinks/DynamicLinks.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Firestore/Firestore.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Functions/Functions.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/RemoteConfig/RemoteConfig.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/Storage/Storage.csproj -c Release -o nupkgs/')
 end
 
 function PmxBuildiOS(Opts)
@@ -183,7 +175,7 @@ end
 
 local function firebase_nuget_package_completions(ArgLead, _,_)
   if ArgLead == '' then
-    return { "-p", "-v" }
+    return { "-p" }
   elseif string.starts(ArgLead, '-p') then
     return {
       "-p Analytics",
@@ -212,8 +204,7 @@ vim.api.nvim_create_user_command("MauiClean", MauiClean, {})
 vim.api.nvim_create_user_command("MauiDeleteBinAndObjFolders", MauiDeleteBinAndObjFolders, {})
 vim.api.nvim_create_user_command("MauiRestoreNuget", MauiRestoreNuget, {})
 vim.api.nvim_create_user_command("MauiCreateFirebaseNugetPackage", MauiCreateFirebaseNugetPackage, { nargs='+', complete=firebase_nuget_package_completions })
-vim.api.nvim_create_user_command("MauiCreateAllFirebaseNugetPackages", MauiCreateAllFirebaseNugetPackages, { nargs=1 })
-vim.api.nvim_create_user_command("MauiExit", MauiExit, {})
+vim.api.nvim_create_user_command("MauiCreateAllFirebaseNugetPackages", MauiCreateAllFirebaseNugetPackages, {})
 vim.api.nvim_create_user_command("PmxBuildiOS", PmxBuildiOS, { nargs='?', complete=pmx_ios_completions })
 vim.api.nvim_create_user_command("PmxBuildAndroid", PmxBuildAndroid, {})
 vim.api.nvim_create_user_command("MsBuildUpdateAndroidResources", MsBuildUpdateAndroidResources, {})

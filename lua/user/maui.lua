@@ -16,6 +16,10 @@ local function send_terminal_command(Command)
   vim.cmd(":TermExec cmd='" .. Command .. "'")
 end
 
+local function notify_info(Message)
+  vim.notify(Message, 'info', { title = 'maui.lua' })
+end
+
 local function get_device_id(device_name)
   local handle = io.popen("xcrun simctl list | egrep -vwE 'com' | egrep -m1 -i '" .. device_name .." \\(' | egrep -vwE 'unavailable' | sed -e 's/iPad Pro (12.9-inch) (4th generation)//' |cut -d '(' -f2 | cut -d ')' -f1")
   if handle then
@@ -26,6 +30,14 @@ end
 --
 -- command functions
 --
+
+function MauiUninstalliOS(Opts)
+  send_terminal_command('xcrun simctl uninstall booted ' .. Opts.args)
+end
+
+function MauiUninstallAndroid(Opts)
+  send_terminal_command('adb uninstall ' .. Opts.args)
+end
 
 function MauiBuildiOS(Opts)
   local _,_,_, device_name = string.find(Opts.args, "(-d)%s'([^']*)'")
@@ -46,7 +58,7 @@ end
 function MauiDeleteBinAndObjFolders()
   os.execute('find . -type d -name bin -prune -exec rm -rf {} \\;')
   os.execute('find . -type d -name obj -prune -exec rm -rf {} \\;')
-  vim.notify('All bin and obj folders successfully deleted!', 'info', { title = 'maui.lua' })
+  notify_info('All bin and obj folders successfully deleted!')
 end
 
 function MauiRestoreNuget()
@@ -62,7 +74,7 @@ function MauiCreateFirebaseNugetPackage(Opts)
   send_terminal_command('dotnet clean')
   send_terminal_command('dotnet build src/' .. project_name .. '/' .. project_name .. '.csproj -c Release')
   send_terminal_command('dotnet pack src/' .. project_name .. '/' .. project_name .. '.csproj -c Release -o nupkgs/')
-  vim.notify('Nuget package created successfully!', 'info', { title = 'maui.lua' })
+  notify_info('Nuget package created successfully!')
 end
 
 function MauiCreateAllFirebaseNugetPackages()
@@ -128,7 +140,27 @@ end
 -- completions
 --
 
-local function maui_ios_completions(ArgLead, _,_)
+local function maui_ios_uninstall_completions(_,_,_)
+  return {
+    'com.pressmatrix.development',
+    'com.pmx.development.unittest',
+    'com.pressmatrix.PressMatrix',
+    'com.tobishiba.playground',
+    'plugin.firebase.integrationtests'
+  }
+end
+
+local function maui_android_uninstall_completions(_,_,_)
+  return {
+    'com.pressmatrix.development',
+    'com.pmx.development.unittest',
+    'com.pressmatrix.pmxshowcase',
+    'com.tobishiba.playground',
+    'plugin.firebase.integrationtests'
+  }
+end
+
+local function maui_ios_build_completions(ArgLead, _,_)
   if ArgLead == '' then
     return { "-d", "-p" }
   elseif string.starts(ArgLead, '-d') then
@@ -145,7 +177,7 @@ local function maui_ios_completions(ArgLead, _,_)
   end
 end
 
-local function maui_android_completions(ArgLead, _,_)
+local function maui_android_build_completions(ArgLead, _,_)
   if ArgLead == '' then
     return { "-p" }
   elseif string.starts(ArgLead, '-p') then
@@ -156,7 +188,7 @@ local function maui_android_completions(ArgLead, _,_)
   end
 end
 
-local function pmx_ios_completions(ArgLead, _,_)
+local function pmx_ios_build_completions(ArgLead, _,_)
   if ArgLead == '' then
     return { "-d", "-c" }
   elseif string.starts(ArgLead, '-d') then
@@ -198,14 +230,16 @@ end
 -- user commands --
 --
 
-vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='+', complete=maui_ios_completions })
-vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, { nargs=1, complete=maui_android_completions })
+vim.api.nvim_create_user_command("MauiUninstalliOS", MauiUninstalliOS, { nargs=1, complete=maui_ios_uninstall_completions })
+vim.api.nvim_create_user_command("MauiUninstallAndroid", MauiUninstallAndroid, { nargs=1, complete=maui_android_uninstall_completions })
+vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='+', complete=maui_ios_build_completions })
+vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, { nargs=1, complete=maui_android_build_completions })
 vim.api.nvim_create_user_command("MauiClean", MauiClean, {})
 vim.api.nvim_create_user_command("MauiDeleteBinAndObjFolders", MauiDeleteBinAndObjFolders, {})
 vim.api.nvim_create_user_command("MauiRestoreNuget", MauiRestoreNuget, {})
 vim.api.nvim_create_user_command("MauiCreateFirebaseNugetPackage", MauiCreateFirebaseNugetPackage, { nargs='+', complete=firebase_nuget_package_completions })
 vim.api.nvim_create_user_command("MauiCreateAllFirebaseNugetPackages", MauiCreateAllFirebaseNugetPackages, {})
-vim.api.nvim_create_user_command("PmxBuildiOS", PmxBuildiOS, { nargs='?', complete=pmx_ios_completions })
+vim.api.nvim_create_user_command("PmxBuildiOS", PmxBuildiOS, { nargs='?', complete=pmx_ios_build_completions })
 vim.api.nvim_create_user_command("PmxBuildAndroid", PmxBuildAndroid, {})
 vim.api.nvim_create_user_command("MsBuildUpdateAndroidResources", MsBuildUpdateAndroidResources, {})
 vim.api.nvim_create_user_command("MsBuildClean", MsBuildClean, {})

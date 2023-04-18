@@ -8,7 +8,14 @@ if not snip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+local loader_status_ok, luasniploader = pcall(require, "luasnip.loaders.from_vscode")
+if not loader_status_ok then
+  return
+end
+
+luasniploader.lazy_load()
+luasniploader.lazy_load({paths = "./snippets"})
+luasnip.filetype_extend("ruby", {"rails"})
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

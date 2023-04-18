@@ -1,0 +1,28 @@
+{
+	"dr": {
+		"prefix": "dr",
+		"body": [
+			"<div class=\"row$1\">",
+      "  $2",
+      "</div>"
+		]
+	},
+	"dc": {
+		"prefix": "dc",
+		"body": [
+			"<div class=\"col$1\">",
+      "  $2",
+      "</div>"
+		]
+	},
+	"drc": {
+		"prefix": "drc",
+		"body": [
+			"<div class=\"row$1\">",
+			"  <div class=\"col$2\">",
+      "    $3",
+      "  </div>",
+      "</div>"
+		]
+	}
+}

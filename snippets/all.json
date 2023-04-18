@@ -1,0 +1,10 @@
+{
+	"hello_world": {
+		"prefix": "hello_world",
+		"body": [
+			"multi $1",
+			"line $2",
+			"snippet$0"
+		]
+	}
+}

@@ -9,6 +9,10 @@
 			{
 				"language": "eruby",
 				"path": "./erb.json"
+			},
+			{
+				"language": "ruby",
+				"path": "./ruby.json"
 			}
 		]
 	}

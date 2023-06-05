@@ -31,6 +31,12 @@ end
 -- command functions
 --
 
+function MauiOpenSimulator(Opts)
+  local device_id = get_device_id('iPhone 14')
+  os.execute('xcrun simctl boot ' .. device_id)
+  os.execute('open -a Simulator')
+end
+
 function MauiUninstalliOS(Opts)
   send_terminal_command('xcrun simctl uninstall booted ' .. Opts.args)
 end
@@ -230,6 +236,7 @@ end
 -- user commands --
 --
 
+vim.api.nvim_create_user_command("MauiOpenSimulator", MauiOpenSimulator, {})
 vim.api.nvim_create_user_command("MauiUninstalliOS", MauiUninstalliOS, { nargs=1, complete=maui_ios_uninstall_completions })
 vim.api.nvim_create_user_command("MauiUninstallAndroid", MauiUninstallAndroid, { nargs=1, complete=maui_android_uninstall_completions })
 vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='+', complete=maui_ios_build_completions })

@@ -68,7 +68,7 @@ return packer.startup(function(use)
   use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
 
   -- Colorschemes
-  use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }
+  use { "TobiasBuchholz/darkplus.nvim", commit = "1e6e82d192ee38e22a1a3564443e9fe4aff041e5" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin

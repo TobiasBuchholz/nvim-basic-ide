@@ -65,6 +65,7 @@ return packer.startup(function(use)
   use { "fgheng/winbar.nvim", commit = "13739fdb31be51a1000486189662596f07a59a31" }
   use { "rcarriga/nvim-notify", commit = "50d037041ada0895aeba4c0215cde6d11b7729c4" }
   use { "folke/which-key.nvim", commit = "b4301f50ff79a1801b8a8bdc463fe15bde26b37b" }
+  use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
 
   -- Colorschemes
   use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }

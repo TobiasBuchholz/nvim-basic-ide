@@ -31,7 +31,7 @@ end
 -- command functions
 --
 
-function MauiOpenSimulator(Opts)
+function MauiOpenSimulator()
   local device_id = get_device_id('iPhone 14')
   os.execute('xcrun simctl boot ' .. device_id)
   os.execute('open -a Simulator')

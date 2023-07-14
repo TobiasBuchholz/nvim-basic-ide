@@ -1,0 +1,14 @@
+{
+	"dwl": {
+		"prefix": "dwl",
+		"body": [
+      "System.Diagnostics.Debug.WriteLine($\"$1\");"
+		]
+	},
+	"loca": {
+		"prefix": "loca",
+		"body": [
+      "Locator.Current.GetService<$1>();"
+		]
+	}
+}

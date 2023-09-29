@@ -70,6 +70,26 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "TobiasBuchholz/darkplus.nvim", commit = "1e6e82d192ee38e22a1a3564443e9fe4aff041e5" }
 
+  -- github copilot
+  use {
+    "zbirenbaum/copilot.lua",
+    commit = "2c942f33ba5c621c906e625e00a1bb504b65e2f0",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({ suggestion = {enabled = false}, panel = {enabled = false} })
+    end,
+  }
+
+  use {
+    "zbirenbaum/copilot-cmp",
+    commit = "72fbaa03695779f8349be3ac54fa8bd77eed3ee3",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
+
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
   use { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" } -- buffer completions

@@ -219,6 +219,7 @@ local function firebase_nuget_package_completions(ArgLead, _,_)
       "-p Analytics",
       "-p Auth",
       "-p Auth.Facebook",
+      "-p Auth.Google",
       "-p Bundled",
       "-p CloudMessaging",
       "-p Core",

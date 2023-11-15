@@ -49,12 +49,12 @@ function MauiBuildiOS(Opts)
   local _,_,_, device_name = string.find(Opts.args, "(-d)%s'([^']*)'")
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
   local device_id = get_device_id(device_name)
-  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net6.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
+  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net7.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
 end
 
 function MauiBuildAndroid(Opts)
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
-  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net6.0-android && adb logcat')
+  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net7.0-android && adb logcat')
 end
 
 function MauiClean()

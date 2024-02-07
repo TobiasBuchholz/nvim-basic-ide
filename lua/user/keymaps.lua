@@ -78,6 +78,7 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope possession list<CR>", opts)
 keymap("n", "<leader>fn", ":Telescope gkeep<CR>", opts)
+keymap("n", "<leader>fc", ":ChatGPT<CR>", opts)
 
 -- Possession
 keymap("n", "<leader>ps", ":PossessionSave<CR>", opts)

@@ -40,6 +40,12 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
+-- Keep cursor centered
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
@@ -66,6 +72,8 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
 
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- Plugins --
 
 -- NvimTree
@@ -79,6 +87,21 @@ keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope possession list<CR>", opts)
 keymap("n", "<leader>fn", ":Telescope gkeep<CR>", opts)
 keymap("n", "<leader>fc", ":ChatGPT<CR>", opts)
+keymap("n", "<leader>fp", ":Telescope builtin<CR>", opts)
+keymap("n", "<leader>fr", ":Telescope resume<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope current_buffer_fuzzy_find<CR>", opts)
+keymap("n", "<leader>fgc", ":Telescope git_commits<CR>", opts)
+keymap("n", "<leader>fw", ":Telescope grep_string<CR>", opts)
+
+-- other potential telescope commands
+  -- oldfiles
+  -- commands
+  -- search_history
+  -- marks
+  -- registers
+  -- spell_suggest
+  -- keymaps
+  -- git_bcommits
 
 -- Possession
 keymap("n", "<leader>ps", ":PossessionSave<CR>", opts)

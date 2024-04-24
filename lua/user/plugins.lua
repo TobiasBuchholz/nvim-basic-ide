@@ -74,7 +74,7 @@ return packer.startup(function(use)
   -- github copilot
   use {
     "zbirenbaum/copilot.lua",
-    commit = "2c942f33ba5c621c906e625e00a1bb504b65e2f0",
+    commit = "f7612f5af4a7d7615babf43ab1e67a2d790c13a6",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()

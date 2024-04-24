@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
   use { 'tpope/vim-rails', commit = "8972461e64c7c4bf049f2f86ea1bc571e8077b55" }
   use { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { {"nvim-lua/plenary.nvim"} }, commit = "0378a6c428a0bed6a2781d459d7943843f374bce" }
+  use { 'mbbill/undotree', commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
 
   -- Colorschemes
   use { "TobiasBuchholz/darkplus.nvim", commit = "1e6e82d192ee38e22a1a3564443e9fe4aff041e5" }

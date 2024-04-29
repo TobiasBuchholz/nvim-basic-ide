@@ -18,6 +18,29 @@ dap_install.setup {}
 dap_install.config("python", {})
 -- add other configs here
 
+-- configuration for C#
+dap_install.config("dnetcs", {})
+
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = '~/.local/share/nvim/dapinstall/dnetcs/netcoredbg/netcoredbg',
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+  },
+}
+
+require('netcoredbg-macOS-arm64').setup(dap) -- needed for M1 mac
+
+-- dap ui configuration
 dapui.setup {
   expand_lines = true,
   icons = { expanded = "", collapsed = "", circular = "" },

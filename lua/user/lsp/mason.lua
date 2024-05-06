@@ -1,5 +1,5 @@
 local servers = {
-	"sumneko_lua",
+	-- "sumneko_lua",
 	"cssls",
 	"html",
 	"tsserver",
@@ -8,7 +8,7 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"omnisharp",
-	"ruby_ls",
+	-- "ruby_ls",
 	"solargraph"
 }
 

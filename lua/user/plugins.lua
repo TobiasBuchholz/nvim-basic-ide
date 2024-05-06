@@ -45,7 +45,7 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim", commit = "6afb67460283f0e990d35d229fd38fdc04063e0a" } -- Have packer manage itself
-  use { "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" } -- Useful lua functions used by lots of plugins
+  use { "nvim-lua/plenary.nvim", commit = "08e301982b9a057110ede7a735dd1b5285eb341f" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" } -- Autopairs, integrates with both cmp and treesitter
   use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
   use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" }
@@ -74,8 +74,8 @@ return packer.startup(function(use)
   use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
 
   -- Colorschemes
-  use { "TobiasBuchholz/darkplus.nvim", commit = "1e6e82d192ee38e22a1a3564443e9fe4aff041e5" }
-  -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } // use this for local colorscheme development
+  use { "TobiasBuchholz/darkplus.nvim", commit = "42a08376da20067677e1ae2033cab0cc32de33e3" }
+  -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
   -- github copilot
   use {
@@ -123,17 +123,17 @@ return packer.startup(function(use)
 
   -- LSP
   -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
-  use { "neovim/nvim-lspconfig", commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda" } -- enable LSP
-  use { "williamboman/mason.nvim", commit = "bfc5997e52fe9e20642704da050c415ea1d4775f" }
-  use { "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" }
-  use { "jose-elias-alvarez/null-ls.nvim", commit = "c0c19f32b614b3921e17886c541c13a72748d450" } -- for formatters and linters
-  use { "RRethy/vim-illuminate", commit = "a2e8476af3f3e993bb0d6477438aad3096512e42" }
+  use { "neovim/nvim-lspconfig", commit = "97762065bf7e1ac617d0a8710eb7ec2d656287a9" } -- enable LSP
+  use { "williamboman/mason.nvim", commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10" }
+  use { "williamboman/mason-lspconfig.nvim", commit = "05744f0f1967b5757bd05c08df4271ab8ec990aa" }
+  use { "jose-elias-alvarez/null-ls.nvim", commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" } -- for formatters and linters
+  use { "RRethy/vim-illuminate", commit = "e522e0dd742a83506db0a72e1ced68c9c130f185" }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
+  use { "nvim-telescope/telescope.nvim", commit = "fac83a556e7b710dc31433dec727361ca062dbe9" }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac" }
+  use { "nvim-treesitter/nvim-treesitter", commit = "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" }
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" }

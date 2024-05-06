@@ -132,3 +132,6 @@ keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 
 -- undo tree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- ror
+keymap("n", "<leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })

@@ -66,12 +66,16 @@ return packer.startup(function(use)
   use { "rcarriga/nvim-notify", commit = "50d037041ada0895aeba4c0215cde6d11b7729c4" }
   use { "folke/which-key.nvim", commit = "b4301f50ff79a1801b8a8bdc463fe15bde26b37b" }
   use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
-  use { 'tpope/vim-rails', commit = "8972461e64c7c4bf049f2f86ea1bc571e8077b55" }
   use { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { {"nvim-lua/plenary.nvim"} }, commit = "0378a6c428a0bed6a2781d459d7943843f374bce" }
-  use { 'mbbill/undotree', commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
+  use { "mbbill/undotree", commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
+
+  -- ruby on rails
+  use { "stevearc/dressing.nvim", commit = "5162edb1442a729a885c45455a07e9a89058be2f"}
+  use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
 
   -- Colorschemes
   use { "TobiasBuchholz/darkplus.nvim", commit = "1e6e82d192ee38e22a1a3564443e9fe4aff041e5" }
+  -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } // use this for local colorscheme development
 
   -- github copilot
   use {

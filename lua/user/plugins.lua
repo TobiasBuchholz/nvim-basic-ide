@@ -51,11 +51,11 @@ return packer.startup(function(use)
   use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" }
   use { "kyazdani42/nvim-web-devicons", commit = "563f3635c2d8a7be7933b9e547f7c178ba0d4352" }
   use { "kyazdani42/nvim-tree.lua", commit = "7282f7de8aedf861fe0162a559fc2b214383c51c" }
-  use { "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" }
+  use { "akinsho/bufferline.nvim", dependencies = 'nvim-tree/nvim-web-devicons', commit = "73540cb95f8d95aa1af3ed57713c6720c78af915" }
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
-  use { "nvim-lualine/lualine.nvim", commit = "a52f078026b27694d2290e34efa61a6e4a690621" }
+  use { "nvim-lualine/lualine.nvim", commit = "0a5a66803c7407767b799067986b4dc3036e1983" }
   use { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" }
-  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "b83e37492e34538aa85aa70d8171f3f86f69b3b4" }
+  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "d4a071e26ba49d147c6ceaa7fe209d6c6e5d10fd" }
   use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
 
   -- Colorschemes
-  use { "TobiasBuchholz/darkplus.nvim", commit = "42a08376da20067677e1ae2033cab0cc32de33e3" }
+  use { "TobiasBuchholz/darkplus.nvim", commit = "1c6f6762a56b674f3655a932de9ee5fd87eb1d84" }
   -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
   -- github copilot

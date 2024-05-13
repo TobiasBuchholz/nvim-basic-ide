@@ -100,7 +100,7 @@ return packer.startup(function(use)
   -- ChatGPT
   use({
     "jackMort/ChatGPT.nvim",
-    commit = "b50fdaf7836c18e0de2f1def0c1f39d56ef8bced",
+    commit = "df53728e05129278d6ea26271ec086aa013bed90",
     requires = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",

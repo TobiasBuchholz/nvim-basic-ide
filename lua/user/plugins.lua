@@ -49,8 +49,8 @@ return packer.startup(function(use)
   use { "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" } -- Autopairs, integrates with both cmp and treesitter
   use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
   use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" }
-  use { "kyazdani42/nvim-web-devicons", commit = "563f3635c2d8a7be7933b9e547f7c178ba0d4352" }
-  use { "kyazdani42/nvim-tree.lua", commit = "7282f7de8aedf861fe0162a559fc2b214383c51c" }
+  use { "kyazdani42/nvim-web-devicons", commit = "5b9067899ee6a2538891573500e8fd6ff008440f" }
+  use { "kyazdani42/nvim-tree.lua", commit = "edd4e25fd4f8923f9e2816e27b5d1b1b5fff7a85" }
   use { "akinsho/bufferline.nvim", dependencies = 'nvim-tree/nvim-web-devicons', commit = "73540cb95f8d95aa1af3ed57713c6720c78af915" }
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "0a5a66803c7407767b799067986b4dc3036e1983" }
@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
 
   -- Colorschemes
-  use { "TobiasBuchholz/darkplus.nvim", commit = "1c6f6762a56b674f3655a932de9ee5fd87eb1d84" }
+  use { "TobiasBuchholz/darkplus.nvim", commit = "eb1be7900867c97b7056b885268eccfa8bb390c0" }
   -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
   -- github copilot

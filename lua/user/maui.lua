@@ -48,8 +48,13 @@ end
 function MauiBuildiOS(Opts)
   local _,_,_, device_name = string.find(Opts.args, "(-d)%s'([^']*)'")
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
-  local device_id = get_device_id(device_name)
-  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net7.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
+
+  if device_name == 'physical' then
+    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net7.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
+  else
+    local device_id = get_device_id(device_name)
+    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net7.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
+  end
 end
 
 function MauiBuildAndroid(Opts)
@@ -120,9 +125,11 @@ function PmxBuildiOS(Opts)
   local device_id = get_device_id(device_name)
 
   if configuration == 'Debug-iOS-Simulator' then
-   send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Simulator && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --launchsim=PressMatrix.UI.iOS/bin/iPhoneSimulator/Debug/PressMatrix.UI.iOS.app --device::v2:udid=' .. device_id)
+    send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Simulator && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --launchsim=PressMatrix.UI.iOS/bin/iPhoneSimulator/Debug/PressMatrix.UI.iOS.app --device::v2:udid=' .. device_id)
   elseif configuration == 'Debug-iOS-Tests-Simulator' then
-   send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Tests-Simulator && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --launchsim=PressMatrix.UI.TestHarness.iOS/bin/iPhoneSimulator/Debug/PressMatrix.UI.TestHarness.iOS.app --device::v2:udid=' .. device_id)
+    send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Tests-Simulator && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --launchsim=PressMatrix.UI.TestHarness.iOS/bin/iPhoneSimulator/Debug/PressMatrix.UI.TestHarness.iOS.app --device::v2:udid=' .. device_id)
+  elseif configuration == 'Debug-iOS-Device' then
+    send_terminal_command('msbuild /t:Build /p:Configuration=Debug-iOS-Device && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --sdkroot /Applications/Xcode.app -v -v --installdev=/Users/tobiasbuchholz/Work/PressMatrix/projects/mobile/pressmatrix-client-xamarin/PressMatrix.UI.iOS/bin/iPhone/Debug/PressMatrix.UI.iOS.app --devname="00008027-001138681106802E" && /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mlaunch --sdkroot /Applications/Xcode.app -v -v --logdev | grep "PressMatrix.UI.iOS"')
   end
 end
 
@@ -174,6 +181,7 @@ local function maui_ios_build_completions(ArgLead, _,_)
       "-d 'iPhone 14'",
       "-d 'iPhone 8'",
       "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
+      "-d 'physical'",
     }
   elseif string.starts(ArgLead, '-p') then
     return {
@@ -202,11 +210,13 @@ local function pmx_ios_build_completions(ArgLead, _,_)
       "-d 'iPhone 14'",
       "-d 'iPhone 8'",
       "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
+      "-d 'physical'"
     }
   elseif string.starts(ArgLead, '-c') then
     return {
       "-c Debug-iOS-Simulator",
-      "-c Debug-iOS-Tests-Simulator"
+      "-c Debug-iOS-Tests-Simulator",
+      "-c Debug-iOS-Device"
     }
   end
 end

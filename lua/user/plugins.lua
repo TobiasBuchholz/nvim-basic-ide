@@ -68,6 +68,8 @@ return packer.startup(function(use)
   use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
   use { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { {"nvim-lua/plenary.nvim"} }, commit = "0378a6c428a0bed6a2781d459d7943843f374bce" }
   use { "mbbill/undotree", commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
+  use { "folke/todo-comments.nvim", commit = "a7e39ae9e74f2c8c6dc4eea6d40c3971ae84752d" }
+  use { "kylechui/nvim-surround", tag = "*" }
 
   -- ruby on rails
   use { "stevearc/dressing.nvim", commit = "5162edb1442a729a885c45455a07e9a89058be2f"}

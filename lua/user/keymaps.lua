@@ -107,6 +107,7 @@ keymap("n", "<leader>fr", ":Telescope resume<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 keymap("n", "<leader>fgc", ":Telescope git_commits<CR>", opts)
 keymap("n", "<leader>fw", ":Telescope grep_string<CR>", opts)
+keymap("n", "<leader>fd", ":TodoTelescope<CR>", opts)
 
 -- other potential telescope commands
   -- oldfiles

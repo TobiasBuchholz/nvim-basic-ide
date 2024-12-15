@@ -50,16 +50,16 @@ function MauiBuildiOS(Opts)
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
 
   if device_name == 'physical' then
-    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net8.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
+    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
   else
     local device_id = get_device_id(device_name)
-    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net8.0-ios /p:RuntimeIdentifier=iossimulator-x64 -p:_DeviceName=:v2:udid=' .. device_id)
+    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios /p:RuntimeIdentifier=iossimulator-x64 -p:_DeviceName=:v2:udid=' .. device_id)
   end
 end
 
 function MauiBuildAndroid(Opts)
   local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
-  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net8.0-android && adb logcat')
+  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-android && adb logcat')
 end
 
 function MauiClean()
@@ -178,6 +178,7 @@ local function maui_ios_build_completions(ArgLead, _,_)
     return { "-d", "-p" }
   elseif string.starts(ArgLead, '-d') then
     return {
+      "-d 'iPhone 16'",
       "-d 'iPhone 14'",
       "-d 'iPhone 8'",
       "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
@@ -185,6 +186,8 @@ local function maui_ios_build_completions(ArgLead, _,_)
     }
   elseif string.starts(ArgLead, '-p') then
     return {
+      "-p PressMatrix.UI.iOS/PressMatrix.UI.iOS.csproj",
+      "-p PressMatrix.IntegrationTests/PressMatrix.IntegrationTests.csproj",
       "-p sample/Playground/Playground.csproj",
       "-p tests/Plugin.Firebase.IntegrationTests/Plugin.Firebase.IntegrationTests.csproj"
     }
@@ -196,6 +199,8 @@ local function maui_android_build_completions(ArgLead, _,_)
     return { "-p" }
   elseif string.starts(ArgLead, '-p') then
     return {
+      "-p PressMatrix.UI.Android/PressMatrix.UI.Android.csproj",
+      "-p PressMatrix.IntegrationTests/PressMatrix.IntegrationTests.csproj",
       "-p sample/Playground/Playground.csproj",
       "-p tests/Plugin.Firebase.IntegrationTests/Plugin.Firebase.IntegrationTests.csproj"
     }

@@ -46,8 +46,8 @@ function MauiUninstallAndroid(Opts)
 end
 
 function MauiBuildiOS(Opts)
-  local _,_,_, device_name = string.find(Opts.args, "(-d)%s'([^']*)'")
-  local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
+  local device_name = string.match(Opts.args, "-d%s'([^']*)'") or 'iPhone 14'
+  local project = string.match(Opts.args, "-p%s([^%s]*)") or 'PressMatrix.UI.iOS/PressMatrix.UI.iOS.csproj'
 
   if device_name == 'physical' then
     send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
@@ -58,7 +58,7 @@ function MauiBuildiOS(Opts)
 end
 
 function MauiBuildAndroid(Opts)
-  local _,_, project = string.find(Opts.args, "-p%s([^%s]*)")
+  local project = string.match(Opts.args, "-p%s([^%s]*)") or 'PressMatrix.UI.Android/PressMatrix.UI.Android.csproj'
   send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-android && adb logcat')
 end
 
@@ -255,8 +255,8 @@ end
 vim.api.nvim_create_user_command("MauiOpenSimulator", MauiOpenSimulator, {})
 vim.api.nvim_create_user_command("MauiUninstalliOS", MauiUninstalliOS, { nargs=1, complete=maui_ios_uninstall_completions })
 vim.api.nvim_create_user_command("MauiUninstallAndroid", MauiUninstallAndroid, { nargs=1, complete=maui_android_uninstall_completions })
-vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='+', complete=maui_ios_build_completions })
-vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, { nargs=1, complete=maui_android_build_completions })
+vim.api.nvim_create_user_command("MauiBuildiOS", MauiBuildiOS, { nargs='?', complete=maui_ios_build_completions })
+vim.api.nvim_create_user_command("MauiBuildAndroid", MauiBuildAndroid, { nargs='?', complete=maui_android_build_completions })
 vim.api.nvim_create_user_command("MauiClean", MauiClean, {})
 vim.api.nvim_create_user_command("MauiDeleteBinAndObjFolders", MauiDeleteBinAndObjFolders, {})
 vim.api.nvim_create_user_command("MauiRestoreNuget", MauiRestoreNuget, {})

@@ -151,3 +151,7 @@ keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- ror
 keymap("n", "<leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
+
+-- Maui PMX builds
+keymap("n", "<leader>mi", "<cmd>MauiBuildiOS<cr>", opts)
+keymap("n", "<leader>ma", "<cmd>MauiBuildAndroid<cr>", opts)

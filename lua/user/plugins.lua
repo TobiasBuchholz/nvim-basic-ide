@@ -101,13 +101,13 @@ return packer.startup(function(use)
 
   -- ChatGPT
   use({
-    "jackMort/ChatGPT.nvim",
-    commit = "df53728e05129278d6ea26271ec086aa013bed90",
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
+    "frankroeder/parrot.nvim",
+    commit = "048a77d00ff427ce01c32a381ecff7f94a455643",
+    requires = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim'},
+    cmd = 'PrtStatus',
+    config = function()
+      require "user.parrot"
+    end
   })
 
   -- cmp plugins

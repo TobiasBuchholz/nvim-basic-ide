@@ -152,6 +152,10 @@ keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 -- ror
 keymap("n", "<leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
 
--- Maui PMX builds
-keymap("n", "<leader>mi", "<cmd>MauiBuildiOS<cr>", opts)
-keymap("n", "<leader>ma", "<cmd>MauiBuildAndroid<cr>", opts)
+-- Maui
+keymap("n", "<leader>mbi", "<cmd>MauiBuildiOS<cr>", opts)
+keymap("n", "<leader>mba", "<cmd>MauiBuildAndroid<cr>", opts)
+keymap("n", "<leader>md", "<cmd>MauiDeleteBinAndObjFolders<cr>", opts)
+keymap("n", "<leader>mc", "<cmd>MauiClean<cr>", opts)
+keymap("n", "<leader>mr", "<cmd>MauiRestoreNuget<cr>", opts)
+keymap("n", "<leader>mos", "<cmd>MauiOpenSimulator<cr>", opts)

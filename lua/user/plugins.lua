@@ -63,7 +63,7 @@ return packer.startup(function(use)
   use { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, commit = "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96", }
   use { "stevearc/gkeep.nvim", run = ':UpdateRemotePlugins', commit = "eeb4f0e94bc10c3031f417c9d6adddfb2f104117" }
   use { "fgheng/winbar.nvim", commit = "13739fdb31be51a1000486189662596f07a59a31" }
-  use { "rcarriga/nvim-notify", commit = "fbef5d32be8466dd76544a257d3f3dce20082a07" }
+  use { "rcarriga/nvim-notify", commit = "22f29093eae7785773ee9d543f8750348b1a195c" }
   use { "folke/which-key.nvim", commit = "b4301f50ff79a1801b8a8bdc463fe15bde26b37b" }
   use { "sindrets/diffview.nvim", commit = "6ca4cce071d527fa16c27781f98b843774ae84a7" }
   use { "ThePrimeagen/harpoon", branch = "harpoon2", requires = { {"nvim-lua/plenary.nvim"} }, commit = "0378a6c428a0bed6a2781d459d7943843f374bce" }
@@ -72,8 +72,9 @@ return packer.startup(function(use)
   use { "kylechui/nvim-surround", commit = "9f0cb495f25bff32c936062d85046fbda0c43517" }
 
   -- ruby on rails
-  use { "stevearc/dressing.nvim", commit = "5162edb1442a729a885c45455a07e9a89058be2f"}
-  use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
+  use { "stevearc/dressing.nvim", commit = "2d7c2db2507fa3c4956142ee607431ddb2828639"}
+  -- use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
+  use { "~/Development/neovim/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
 
   -- Colorschemes
   use { "TobiasBuchholz/darkplus.nvim", commit = "eb1be7900867c97b7056b885268eccfa8bb390c0" }

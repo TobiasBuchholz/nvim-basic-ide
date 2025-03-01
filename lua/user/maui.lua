@@ -53,7 +53,7 @@ function MauiBuildiOS(Opts)
     send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
   else
     local device_id = get_device_id(device_name)
-    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios /p:RuntimeIdentifier=iossimulator-x64 -p:_DeviceName=:v2:udid=' .. device_id)
+    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
   end
 end
 

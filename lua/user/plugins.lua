@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "0a5a66803c7407767b799067986b4dc3036e1983" }
   use { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" }
-  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "d4a071e26ba49d147c6ceaa7fe209d6c6e5d10fd" }
+  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "138c3ca4032119398026c19f8c6b4b862c0dc54d" }
   use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }

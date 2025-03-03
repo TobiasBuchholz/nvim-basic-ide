@@ -167,6 +167,7 @@ keymap("n", "<leader>rfm", ":lua require('ror.finders.model').find()<CR>", opts)
 keymap("n", "<leader>rfc", ":lua require('ror.finders.controller').find()<CR>", opts)
 keymap("n", "<leader>rfv", ":lua require('ror.finders.view').find()<CR>", opts)
 keymap("n", "<leader>rft", ":lua require('ror.finders.model_test').find()<CR>", opts)
+keymap("n", "<leader>rlt", ":lua require('ror.schema').list_table_columns()<CR>", opts)
 
 -- Maui
 keymap("n", "<leader>mbi", "<cmd>MauiBuildiOS<cr>", opts)

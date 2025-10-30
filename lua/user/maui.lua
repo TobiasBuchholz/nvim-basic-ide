@@ -32,7 +32,7 @@ end
 --
 
 function MauiOpenSimulator()
-  local device_id = get_device_id('iPhone 14')
+  local device_id = get_device_id('iPhone 16')
   os.execute('xcrun simctl boot ' .. device_id)
   os.execute('open -a Simulator')
 end
@@ -46,7 +46,7 @@ function MauiUninstallAndroid(Opts)
 end
 
 function MauiBuildiOS(Opts)
-  local device_name = string.match(Opts.args, "-d%s'([^']*)'") or 'iPhone 14'
+  local device_name = string.match(Opts.args, "-d%s'([^']*)'") or 'iPhone 16'
   local project = string.match(Opts.args, "-p%s([^%s]*)") or 'PressMatrix.UI.iOS/PressMatrix.UI.iOS.csproj'
 
   if device_name == 'physical' then
@@ -179,7 +179,6 @@ local function maui_ios_build_completions(ArgLead, _,_)
   elseif string.starts(ArgLead, '-d') then
     return {
       "-d 'iPhone 16'",
-      "-d 'iPhone 14'",
       "-d 'iPhone 8'",
       "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
       "-d 'physical'",
@@ -212,7 +211,7 @@ local function pmx_ios_build_completions(ArgLead, _,_)
     return { "-d", "-c" }
   elseif string.starts(ArgLead, '-d') then
     return {
-      "-d 'iPhone 14'",
+      "-d 'iPhone 16'",
       "-d 'iPhone 8'",
       "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
       "-d 'physical'"

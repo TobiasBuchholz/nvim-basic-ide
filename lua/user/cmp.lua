@@ -3,6 +3,11 @@ if not cmp_status_ok then
   return
 end
 
+local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_status_ok then
+  return
+end
+
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
@@ -101,9 +106,10 @@ cmp.setup {
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      vim_item.kind = kind_icons[vim_item.kind]
-      vim_item.menu = ({
+    format = lspkind.cmp_format({
+      before = require("tailwind-tools.cmp").lspkind_format,
+      mode = "symbol",
+      menu = ({
         nvim_lsp = "[lsp]",
         copilot = "[cpt]",
         nvim_lua = "[lua]",
@@ -112,9 +118,8 @@ cmp.setup {
         path = "[path]",
         cmp_bootstrap = "[bs]",
         emoji = "",
-      })[entry.source.name]
-      return vim_item
-    end,
+      })
+    }),
   },
   sources = {
     { name = "nvim_lsp" },

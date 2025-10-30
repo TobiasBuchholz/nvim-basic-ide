@@ -70,6 +70,8 @@ return packer.startup(function(use)
   use { "mbbill/undotree", commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
   use { "folke/todo-comments.nvim", commit = "a7e39ae9e74f2c8c6dc4eea6d40c3971ae84752d" }
   use { "kylechui/nvim-surround", commit = "9f0cb495f25bff32c936062d85046fbda0c43517" }
+  use { "luckasRanarison/tailwind-tools.nvim" }
+  use { "onsails/lspkind-nvim" }
 
   -- ruby on rails
   use { "stevearc/dressing.nvim", commit = "2d7c2db2507fa3c4956142ee607431ddb2828639"}

@@ -25,7 +25,7 @@ nvim_tree.setup({
   on_attach = my_on_attach,
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_cwd = false,
   },
   sort = {
     sorter = "case_sensitive",

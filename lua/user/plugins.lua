@@ -85,7 +85,7 @@ return packer.startup(function(use)
   -- github copilot
   use {
     "zbirenbaum/copilot.lua",
-    commit = "f7612f5af4a7d7615babf43ab1e67a2d790c13a6",
+    commit = "c2c435419e081a87e909e8979c66d874e75e4155",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -95,7 +95,7 @@ return packer.startup(function(use)
 
   use {
     "zbirenbaum/copilot-cmp",
-    commit = "72fbaa03695779f8349be3ac54fa8bd77eed3ee3",
+    commit = "15fc12af3d0109fa76b60b5cffa1373697e261d1",
     after = { "copilot.lua" },
     config = function ()
       require("copilot_cmp").setup()
@@ -105,13 +105,23 @@ return packer.startup(function(use)
   -- ChatGPT
   use({
     "frankroeder/parrot.nvim",
-    commit = "048a77d00ff427ce01c32a381ecff7f94a455643",
+    commit = "2ce83dfe94975da6b5f02fffeebcd6588753ab44",
     requires = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim'},
-    cmd = 'PrtStatus',
+    cmd = 'PrtChatToggle',
     config = function()
       require "user.parrot"
     end
   })
+
+  use({
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    commit = "8debb17aab2fbbf3b341e46ac032d0a6f937d8c3",
+    config = function()
+        require('render-markdown').setup({})
+    end,
+})
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
@@ -135,7 +145,7 @@ return packer.startup(function(use)
   use { "RRethy/vim-illuminate", commit = "e522e0dd742a83506db0a72e1ced68c9c130f185" }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", commit = "fac83a556e7b710dc31433dec727361ca062dbe9" }
+  use { "nvim-telescope/telescope.nvim", commit = "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4" }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", commit = "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" }

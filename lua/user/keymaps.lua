@@ -149,6 +149,14 @@ keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 -- undo tree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+-- Parrot/ChatGPT
+keymap("n", "<leader>cc", ":PrtChatToggle<CR>", opts)
+keymap("n", "<leader>cn", ":PrtChatNew<CR>", opts)
+keymap("n", "<leader>ci", ":PrtImplement<CR>", opts)
+keymap("n", "<leader>cr", ":PrtRewrite<CR>", opts)
+keymap("n", "<leader>cs", ":PrtStop<CR>", opts)
+keymap("n", "<leader>cf", ":PrtChatFinder<CR>", opts)
+
 -- ror
 keymap("n", "<leader>rc", ":lua require('ror.commands').list_commands()<CR>", opts)
 keymap("n", "<leader>rgv", ":lua require('ror.navigations').go_to_view()<CR>", opts)

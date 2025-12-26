@@ -121,7 +121,14 @@ return packer.startup(function(use)
     config = function()
         require('render-markdown').setup({})
     end,
-})
+  })
+
+  -- Amp
+  use { "sourcegraph/amp.nvim",
+    commit = "621f1ca375fc2887d30a4ac32a8b6c582d28f9c0",
+    lazy = false,
+    opts = { auto_start = true, log_level = "info" }
+  }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin

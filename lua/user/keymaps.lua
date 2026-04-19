@@ -149,13 +149,16 @@ keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 -- undo tree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
--- Parrot/ChatGPT
-keymap("n", "<leader>cc", ":PrtChatToggle<CR>", opts)
-keymap("n", "<leader>cn", ":PrtChatNew<CR>", opts)
-keymap("n", "<leader>ci", ":PrtImplement<CR>", opts)
-keymap("n", "<leader>cr", ":PrtRewrite<CR>", opts)
-keymap("n", "<leader>cs", ":PrtStop<CR>", opts)
-keymap("n", "<leader>cf", ":PrtChatFinder<CR>", opts)
+-- Claude Code
+keymap("n", "<leader>cc", "<cmd>ClaudeCode<cr>", opts)
+keymap("n", "<leader>cf", "<cmd>ClaudeCodeFocus<cr>", opts)
+keymap("n", "<leader>cr", "<cmd>ClaudeCode --resume<cr>", opts)
+keymap("n", "<leader>cC", "<cmd>ClaudeCode --continue<cr>", opts)
+keymap("n", "<leader>cm", "<cmd>ClaudeCodeSelectModel<cr>", opts)
+keymap("n", "<leader>cb", "<cmd>ClaudeCodeAdd %<cr>", opts)
+keymap("v", "<leader>cs", "<cmd>ClaudeCodeSend<cr>", opts)
+keymap("n", "<leader>ca", "<cmd>ClaudeCodeDiffAccept<cr>", opts)
+keymap("n", "<leader>cd", "<cmd>ClaudeCodeDiffDeny<cr>", opts)
 
 -- ror
 keymap("n", "<leader>rc", ":lua require('ror.commands').list_commands()<CR>", opts)

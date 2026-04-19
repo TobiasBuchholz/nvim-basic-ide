@@ -37,3 +37,22 @@ local lazygit = Terminal:new { cmd = "lazygit", hidden = true, id = 1000 }
 function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
+
+-- switch to normal mode via ESC when terminal is open
+vim.api.nvim_create_autocmd('TermEnter', {
+  pattern = '*', -- applies to all terminal buffers (e.g. snacks with Claude Code)
+  callback = function()
+    local buf_name = vim.api.nvim_buf_get_name(0)
+    if not buf_name:match('lazygit') then
+      vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, buffer = true })
+    end
+  end,
+})
+
+-- close terminal with q
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = 'term://*toggleterm#*',
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>ToggleTerm<CR>', { noremap = true, buffer = true })
+  end,
+})

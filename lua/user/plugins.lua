@@ -45,17 +45,17 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim", commit = "6afb67460283f0e990d35d229fd38fdc04063e0a" } -- Have packer manage itself
-  use { "nvim-lua/plenary.nvim", commit = "08e301982b9a057110ede7a735dd1b5285eb341f" } -- Useful lua functions used by lots of plugins
+  use { "nvim-lua/plenary.nvim", commit = "74b06c6c75e4eeb3108ec01852001636d85a932b" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" } -- Autopairs, integrates with both cmp and treesitter
   use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
   use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" }
-  use { "kyazdani42/nvim-web-devicons", commit = "5b9067899ee6a2538891573500e8fd6ff008440f" }
+  use { "kyazdani42/nvim-web-devicons", commit = "c72328a5494b4502947a022fe69c0c47e53b6aa6" }
   use { "kyazdani42/nvim-tree.lua", commit = "edd4e25fd4f8923f9e2816e27b5d1b1b5fff7a85" }
   use { "akinsho/bufferline.nvim", dependencies = 'nvim-tree/nvim-web-devicons', commit = "73540cb95f8d95aa1af3ed57713c6720c78af915" }
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
   use { "nvim-lualine/lualine.nvim", commit = "0a5a66803c7407767b799067986b4dc3036e1983" }
   use { "akinsho/toggleterm.nvim", commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" }
-  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "138c3ca4032119398026c19f8c6b4b862c0dc54d" }
+  use { "jedrzejboczar/possession.nvim", requires = { "nvim-lua/plenary.nvim" }, commit = "fbea95b16c284727bc8deff2c3780a73efcdaca6" }
   use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
@@ -70,27 +70,28 @@ return packer.startup(function(use)
   use { "mbbill/undotree", commit = "56c684a805fe948936cda0d1b19505b84ad7e065"}
   use { "folke/todo-comments.nvim", commit = "a7e39ae9e74f2c8c6dc4eea6d40c3971ae84752d" }
   use { "kylechui/nvim-surround", commit = "9f0cb495f25bff32c936062d85046fbda0c43517" }
-  use { "luckasRanarison/tailwind-tools.nvim" }
+  use { "luckasRanarison/tailwind-tools.nvim", commit = "fbe982901d4508b0dcd80e07addf0fcb6dab6c49" }
   use { "onsails/lspkind-nvim" }
 
   -- ruby on rails
   use { "stevearc/dressing.nvim", commit = "2d7c2db2507fa3c4956142ee607431ddb2828639"}
   -- use { "weizheheng/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
-  use { "~/Development/neovim/ror.nvim", commit = "9d31ad3953be83ac8dd542725ca4881c861f64a5"}
+  use { "~/Development/neovim/ror.nvim" }
 
   -- Colorschemes
   use { "TobiasBuchholz/darkplus.nvim", commit = "eb1be7900867c97b7056b885268eccfa8bb390c0" }
   -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
   -- github copilot
+  use { "copilotlsp-nvim/copilot-lsp", commit = "1b6d8273594643f51bb4c0c1d819bdb21b42159d" }
   use {
     "zbirenbaum/copilot.lua",
-    commit = "c2c435419e081a87e909e8979c66d874e75e4155",
+    commit = "ad7e729e9a6348f7da482be0271d452dbc4c8e2c",
+    requires = {
+      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+    },
     cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({ suggestion = {enabled = false}, panel = {enabled = false} })
-    end,
+    event = "InsertEnter"
   }
 
   use {
@@ -102,17 +103,7 @@ return packer.startup(function(use)
     end
   }
 
-  -- ChatGPT
-  use({
-    "frankroeder/parrot.nvim",
-    commit = "2ce83dfe94975da6b5f02fffeebcd6588753ab44",
-    requires = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim'},
-    cmd = 'PrtChatToggle',
-    config = function()
-      require "user.parrot"
-    end
-  })
-
+  -- markdown preview
   use({
     'MeanderingProgrammer/render-markdown.nvim',
     after = { 'nvim-treesitter' },
@@ -123,12 +114,9 @@ return packer.startup(function(use)
     end,
   })
 
-  -- Amp
-  use { "sourcegraph/amp.nvim",
-    commit = "621f1ca375fc2887d30a4ac32a8b6c582d28f9c0",
-    lazy = false,
-    opts = { auto_start = true, log_level = "info" }
-  }
+  -- Claude Code
+  use { "folke/snacks.nvim", commit = "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" }
+  use { "coder/claudecode.nvim", commit = "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f" }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
@@ -145,14 +133,14 @@ return packer.startup(function(use)
 
   -- LSP
   -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
-  use { "neovim/nvim-lspconfig", commit = "97762065bf7e1ac617d0a8710eb7ec2d656287a9" } -- enable LSP
-  use { "williamboman/mason.nvim", commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10" }
-  use { "williamboman/mason-lspconfig.nvim", commit = "05744f0f1967b5757bd05c08df4271ab8ec990aa" }
-  use { "jose-elias-alvarez/null-ls.nvim", commit = "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" } -- for formatters and linters
+  use { "neovim/nvim-lspconfig", commit = "4b7fbaa239c5db6b36f424a4521ca9f1a401be33" } -- enable LSP
+  use { "williamboman/mason.nvim", commit = "b03fb0f20bc1d43daf558cda981a2be22e73ac42" }
+  use { "williamboman/mason-lspconfig.nvim", commit = "0a3b42c3e503df87aef6d6513e13148381495c3a" }
+  use { "nvimtools/none-ls.nvim", commit = "e135361b9c11755ef6c48f54a2c970c509b56239" } -- for formatters and linters
   use { "RRethy/vim-illuminate", commit = "e522e0dd742a83506db0a72e1ced68c9c130f185" }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", commit = "814f102cd1da3dc78c7d2f20f2ef3ed3cdf0e6e4" }
+  use { "nvim-telescope/telescope.nvim", commit = "028d9a0695a0cc4cfa893889f8c408ed7ccc8adc" }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", commit = "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" }

@@ -15,7 +15,6 @@ vim.api.nvim_set_keymap(
 illuminate.configure {
   providers = {
     "lsp",
-    "treesitter",
     "regex",
   },
   delay = 200,

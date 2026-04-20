@@ -118,6 +118,13 @@ return packer.startup(function(use)
   use { "folke/snacks.nvim", commit = "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" }
   use { "coder/claudecode.nvim", commit = "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f" }
 
+  -- Amp
+  use { "sourcegraph/amp.nvim",
+    commit = "621f1ca375fc2887d30a4ac32a8b6c582d28f9c0",
+    lazy = false,
+    opts = { auto_start = true, log_level = "info" }
+  }
+
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
   use { "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" } -- buffer completions

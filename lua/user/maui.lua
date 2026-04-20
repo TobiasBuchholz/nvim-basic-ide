@@ -181,8 +181,8 @@ local function maui_ios_build_completions(ArgLead, _,_)
   elseif string.starts(ArgLead, '-d') then
     return {
       "-d 'iPhone 16'",
-      "-d 'iPhone 8'",
-      "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
+      "-d 'iPhone 16 Plus'",
+      "-d 'iPad Pro 13-inch'",
       "-d 'physical'",
     }
   elseif string.starts(ArgLead, '-p') then
@@ -214,8 +214,8 @@ local function pmx_ios_build_completions(ArgLead, _,_)
   elseif string.starts(ArgLead, '-d') then
     return {
       "-d 'iPhone 16'",
-      "-d 'iPhone 8'",
-      "-d 'iPad Pro \\(12.9-inch\\) \\(4th generation\\)'",
+      "-d 'iPhone 16 Plus'",
+      "-d 'iPad Pro 13-inch'",
       "-d 'physical'"
     }
   elseif string.starts(ArgLead, '-c') then

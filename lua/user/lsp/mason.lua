@@ -8,7 +8,6 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"omnisharp",
-	-- "ruby_ls",
 	"solargraph"
 }
 

@@ -61,12 +61,28 @@ gitsigns.setup {
     map('n', '<leader>gS', gs.stage_buffer)
     map('n', '<leader>gu', gs.undo_stage_hunk)
     map('n', '<leader>gR', gs.reset_buffer)
-    map('n', '<leader>gp', gs.preview_hunk)
     map('n', '<leader>gb', function() gs.blame_line{full=true} end)
     map('n', '<leader>gtb', gs.toggle_current_line_blame)
     map('n', '<leader>gd', gs.diffthis)
     map('n', '<leader>gD', function() gs.diffthis('~') end)
     map('n', '<leader>gtd', gs.toggle_deleted)
+    map('n', '<leader>gp', function()
+      local ft = vim.bo.filetype
+      gs.preview_hunk()
+      -- preview_hunk runs inside noautocmd, so treesitter never attaches.
+      -- Defer filetype assignment until after the noautocmd block exits so
+      -- treesitter can parse and highlight the popup buffer.
+      vim.schedule(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          if vim.w[win].gitsigns_preview then
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == "" then
+              vim.bo[buf].filetype = ft
+            end
+          end
+        end
+      end)
+    end)
 
     -- Text object
     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

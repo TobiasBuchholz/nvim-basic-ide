@@ -94,6 +94,7 @@ function MauiCreateAllFirebaseNugetPackages()
   send_terminal_command('dotnet restore')
   send_terminal_command('dotnet clean')
   send_terminal_command('dotnet build src/Analytics/Analytics.csproj -c Release')
+  send_terminal_command('dotnet build src/AppCheck/AppCheck.csproj -c Release')
   send_terminal_command('dotnet build src/Auth/Auth.csproj -c Release')
   send_terminal_command('dotnet build src/Auth.Facebook/Auth.Facebook.csproj -c Release')
   send_terminal_command('dotnet build src/Bundled/Bundled.csproj -c Release')
@@ -106,6 +107,7 @@ function MauiCreateAllFirebaseNugetPackages()
   send_terminal_command('dotnet build src/RemoteConfig/RemoteConfig.csproj -c Release')
   send_terminal_command('dotnet build src/Storage/Storage.csproj -c Release')
   send_terminal_command('dotnet pack src/Analytics/Analytics.csproj -c Release -o nupkgs/')
+  send_terminal_command('dotnet pack src/AppCheck/AppCheck.csproj -c Release -o nupkgs/')
   send_terminal_command('dotnet pack src/Auth/Auth.csproj -c Release -o nupkgs/')
   send_terminal_command('dotnet pack src/Auth.Facebook/Auth.Facebook.csproj -c Release -o nupkgs/')
   send_terminal_command('dotnet pack src/Bundled/Bundled.csproj -c Release -o nupkgs/')
@@ -231,9 +233,8 @@ local function firebase_nuget_package_completions(ArgLead, _,_)
   elseif string.starts(ArgLead, '-p') then
     return {
       "-p Analytics",
+      "-p AppCheck",
       "-p Auth",
-      "-p Auth.Facebook",
-      "-p Auth.Google",
       "-p Bundled",
       "-p CloudMessaging",
       "-p Core",

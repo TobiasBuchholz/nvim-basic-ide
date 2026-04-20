@@ -79,7 +79,7 @@ return packer.startup(function(use)
   use { "~/Development/neovim/ror.nvim" }
 
   -- Colorschemes
-  use { "TobiasBuchholz/darkplus.nvim", commit = "eb1be7900867c97b7056b885268eccfa8bb390c0" }
+  use { "TobiasBuchholz/darkplus.nvim", commit = "0a6887ea54000204faa4a000f09ffdfa58dd7914" }
   -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
   -- github copilot

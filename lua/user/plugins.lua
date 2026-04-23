@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim", commit = "74b06c6c75e4eeb3108ec01852001636d85a932b" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" } -- Autopairs, integrates with both cmp and treesitter
   use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
-  use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" }
+  use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "6141a40173c6efa98242dc951ed4b6f892c97027" }
   use { "kyazdani42/nvim-web-devicons", commit = "c72328a5494b4502947a022fe69c0c47e53b6aa6" }
   use { "kyazdani42/nvim-tree.lua", commit = "edd4e25fd4f8923f9e2816e27b5d1b1b5fff7a85" }
   use { "akinsho/bufferline.nvim", dependencies = 'nvim-tree/nvim-web-devicons', commit = "73540cb95f8d95aa1af3ed57713c6720c78af915" }
@@ -150,7 +150,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim", commit = "028d9a0695a0cc4cfa893889f8c408ed7ccc8adc" }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", commit = "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" }
+  use { "nvim-treesitter/nvim-treesitter", commit = "cf12346a3414fa1b06af75c79faebe7f76df080a", run = ":TSUpdate" }
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "805610a9393fa231f2c2b49cb521bfa413fadb3d" }

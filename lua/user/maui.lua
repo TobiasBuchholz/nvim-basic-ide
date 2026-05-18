@@ -50,16 +50,16 @@ function MauiBuildiOS(Opts)
   local project = string.match(Opts.args, "-p%s([^%s]*)") or 'PressMatrix.UI.iOS/PressMatrix.UI.iOS.csproj'
 
   if device_name == 'physical' then
-    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
+    send_terminal_command('dotnet build ' .. project .. ' -t:Build -t:Run -f net10.0-ios -p:RuntimeIdentifier=ios-arm64 -p:_DeviceName=00008027-001138681106802E')
   else
     local device_id = get_device_id(device_name)
-    send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-ios -p:_DeviceName=:v2:udid=' .. device_id)
+    send_terminal_command('dotnet build ' .. project .. ' -t:Build -t:Run -f net10.0-ios -r iossimulator-arm64 -p:_DeviceName=:v2:udid=' .. device_id)
   end
 end
 
 function MauiBuildAndroid(Opts)
   local project = string.match(Opts.args, "-p%s([^%s]*)") or 'PressMatrix.UI.Android/PressMatrix.UI.Android.csproj'
-  send_terminal_command('dotnet build ' .. project .. ' -t:Run -f net9.0-android && adb logcat')
+  send_terminal_command('dotnet build ' .. project .. ' -t:Build -t:Run -f net10.0-android && adb logcat')
 end
 
 function MauiClean()

@@ -3,6 +3,18 @@ if not cmp_status_ok then
   return
 end
 
+-- Neovim 0.11 removed vim.lsp.util.parse_snippet, which the pinned
+-- (Oct-2022) nvim-cmp still calls in entry.lua:get_word().
+if not vim.lsp.util.parse_snippet then
+  vim.lsp.util.parse_snippet = function(input)
+    -- Strip LSP snippet syntax to a plain word: ${1:foo} -> foo, $0 -> ""
+    local ok, parsed = pcall(function()
+      return tostring(vim.lsp._snippet_grammar and vim.lsp._snippet_grammar.parse(input) or input)
+    end)
+    return ok and parsed or input
+  end
+end
+
 local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 if not lspkind_status_ok then
   return

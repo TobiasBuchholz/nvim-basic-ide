@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd('TermEnter', {
   callback = function()
     local buf_name = vim.api.nvim_buf_get_name(0)
     if not buf_name:match('lazygit') then
-      vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, buffer = true })
+      vim.keymap.set('t', '<S-Esc>', '<C-\\><C-n>', { noremap = true, buffer = true })
     end
   end,
 })

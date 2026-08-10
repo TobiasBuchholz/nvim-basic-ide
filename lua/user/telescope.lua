@@ -11,7 +11,7 @@ telescope.setup {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
-    file_ignore_patterns = { ".git/", "node_modules" },
+    file_ignore_patterns = { ".git/", "node_modules", "^bin/", "/bin/", "^obj/", "/obj/", "nugets", "idea" },
 
     mappings = {
       i = {
@@ -20,6 +20,12 @@ telescope.setup {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
       },
+    },
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      no_ignore = true,
     },
   },
   extensions = {

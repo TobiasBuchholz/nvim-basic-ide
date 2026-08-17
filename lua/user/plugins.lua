@@ -108,7 +108,7 @@ return packer.startup(function(use)
     'MeanderingProgrammer/render-markdown.nvim',
     after = { 'nvim-treesitter' },
     requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-    commit = "8debb17aab2fbbf3b341e46ac032d0a6f937d8c3",
+    commit = "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
     config = function()
         require('render-markdown').setup({})
     end,

@@ -125,6 +125,20 @@ keymap("n", "<leader>ps", ":PossessionSave<CR>", opts)
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
+-- Octo (GitHub)
+keymap("n", "<leader>oo", "<cmd>Octo<CR>", opts)
+keymap("n", "<leader>op", "<cmd>Octo pr list<CR>", opts)
+keymap("n", "<leader>oP", "<cmd>Octo pr create<CR>", opts)
+keymap("n", "<leader>oc", "<cmd>Octo pr checkout<CR>", opts)
+keymap("n", "<leader>od", "<cmd>Octo pr diff<CR>", opts)
+keymap("n", "<leader>or", "<cmd>Octo review start<CR>", opts)
+keymap("n", "<leader>oR", "<cmd>Octo review resume<CR>", opts)
+keymap("n", "<leader>os", "<cmd>Octo review submit<CR>", opts)
+keymap("n", "<leader>oi", "<cmd>Octo issue list<CR>", opts)
+keymap("n", "<leader>oI", "<cmd>Octo issue create<CR>", opts)
+keymap("n", "<leader>oa", "<cmd>Octo comment add<CR>", opts)
+keymap("n", "<leader>o/", "<cmd>Octo search<CR>", opts)
+
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)

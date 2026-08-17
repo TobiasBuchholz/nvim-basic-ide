@@ -154,6 +154,15 @@ return packer.startup(function(use)
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "6d808f99bd63303646794406e270bd553ad7792e" }
+  use {
+    "pwntester/octo.nvim",
+    commit = "205f024d3ea4a3d81aac751b6bf8e2d01e0c204f",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "kyazdani42/nvim-web-devicons",
+    },
+  }
 
   -- DAP
   use { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" }

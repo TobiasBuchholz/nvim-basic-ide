@@ -61,7 +61,6 @@ return packer.startup(function(use)
   use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
   use { "ggandor/lightspeed.nvim", commit = "299eefa6a9e2d881f1194587c573dad619fdb96f" }
   use { "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, commit = "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96", }
-  use { "stevearc/gkeep.nvim", run = ':UpdateRemotePlugins', commit = "eeb4f0e94bc10c3031f417c9d6adddfb2f104117" }
   use { "fgheng/winbar.nvim", commit = "13739fdb31be51a1000486189662596f07a59a31" }
   use { "rcarriga/nvim-notify", commit = "22f29093eae7785773ee9d543f8750348b1a195c" }
   use { "folke/which-key.nvim", commit = "b4301f50ff79a1801b8a8bdc463fe15bde26b37b" }
@@ -82,27 +81,6 @@ return packer.startup(function(use)
   use { "TobiasBuchholz/darkplus.nvim", commit = "0a6887ea54000204faa4a000f09ffdfa58dd7914" }
   -- use { "~/.config/nvim/colorschemes/darkplus.nvim" } -- use this for local colorscheme development
 
-  -- github copilot
-  use { "copilotlsp-nvim/copilot-lsp", commit = "1b6d8273594643f51bb4c0c1d819bdb21b42159d" }
-  use {
-    "zbirenbaum/copilot.lua",
-    commit = "ad7e729e9a6348f7da482be0271d452dbc4c8e2c",
-    requires = {
-      "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-    },
-    cmd = "Copilot",
-    event = "InsertEnter"
-  }
-
-  use {
-    "zbirenbaum/copilot-cmp",
-    commit = "15fc12af3d0109fa76b60b5cffa1373697e261d1",
-    after = { "copilot.lua" },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  }
-
   -- markdown preview
   use({
     'MeanderingProgrammer/render-markdown.nvim',
@@ -117,13 +95,6 @@ return packer.startup(function(use)
   -- Claude Code
   use { "folke/snacks.nvim", commit = "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" }
   use { "coder/claudecode.nvim", commit = "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f" }
-
-  -- Amp
-  use { "sourcegraph/amp.nvim",
-    commit = "621f1ca375fc2887d30a4ac32a8b6c582d28f9c0",
-    lazy = false,
-    opts = { auto_start = true, log_level = "info" }
-  }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin

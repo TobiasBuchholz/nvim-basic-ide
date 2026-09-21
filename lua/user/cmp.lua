@@ -123,7 +123,6 @@ cmp.setup {
       mode = "symbol",
       menu = ({
         nvim_lsp = "[lsp]",
-        copilot = "[cpt]",
         nvim_lua = "[lua]",
         luasnip = "[luasnip]",
         buffer = "[buf]",
@@ -135,7 +134,6 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "copilot" },
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },

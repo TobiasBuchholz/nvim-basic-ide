@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A personal Neovim configuration written in Lua. The target environments are TypeScript/JS, Python, C#/.NET (MAUI), and Ruby/Rails development, with AI tooling (Claude Code, Copilot, Amp).
+A personal Neovim configuration written in Lua. The target environments are TypeScript/JS, Python, C#/.NET (MAUI), and Ruby/Rails development, with AI tooling (Claude Code).
 
 ## Development Workflow
 
@@ -60,8 +60,6 @@ Packer.nvim (`wbthomason/packer.nvim`). Plugins are defined in `lua/user/plugins
 **`maui.lua`** — .NET MAUI build commands. Defines custom Vim commands (`MauiBuildiOS`, `MauiBuildAndroid`, etc.) and user commands with completions for device names and configurations. Uses `vim.fn.system()` calls to `dotnet`. Firebase NuGet packaging commands are also here.
 
 **`ror.lua`** — Ruby on Rails helpers via ror.nvim. Adds test coverage column highlighting (green=added, red=deleted lines), test runner integration, and navigation shortcuts for MVC files.
-
-**`copilot.lua`** — GitHub Copilot configured with an `.asdf` Node shim path. Suggestion/panel display is disabled in favor of cmp source integration (via `copilot-cmp`).
 
 **`claude-code.lua`** — claudecode.nvim with a snacks.nvim floating window (0.9×0.9, double border), horizontal diff layout.
 

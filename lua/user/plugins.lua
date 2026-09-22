@@ -71,6 +71,7 @@ return packer.startup(function(use)
   use { "kylechui/nvim-surround", commit = "9f0cb495f25bff32c936062d85046fbda0c43517" }
   use { "luckasRanarison/tailwind-tools.nvim", commit = "fbe982901d4508b0dcd80e07addf0fcb6dab6c49" }
   use { "onsails/lspkind-nvim" }
+  use { "obsidian-nvim/obsidian.nvim", commit = "7a2b7caf41de196de66f27c1969d0d429810621a" }
 
   -- ruby on rails
   use { "stevearc/dressing.nvim", commit = "2d7c2db2507fa3c4956142ee607431ddb2828639"}

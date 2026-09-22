@@ -57,3 +57,64 @@ vim.keymap.set("n", "<leader>nc", "<cmd>Obsidian toggle_checkbox<cr>", opts)
 vim.keymap.set("v", "<leader>nl", "<cmd>Obsidian link<cr>", opts)
 vim.keymap.set("v", "<leader>nL", "<cmd>Obsidian link_new<cr>", opts)
 vim.keymap.set("v", "<leader>nx", "<cmd>Obsidian extract_note<cr>", opts)
+
+local vault = vim.fn.expand "~/Documents/obsidian-notes-vault"
+
+local function git(args, on_exit)
+  local cmd = { "git", "-C", vault }
+  vim.list_extend(cmd, args)
+  return vim.system(cmd, { text = true }, on_exit)
+end
+
+local function notify(msg, level)
+  vim.schedule(function()
+    vim.notify(msg, level)
+  end)
+end
+
+local function timestamp()
+  local t = os.date "*t"
+  local hour = t.hour % 12
+  if hour == 0 then
+    hour = 12
+  end
+  local suffix = t.hour < 12 and "AM" or "PM"
+  return ("%d/%d/%d, %d:%02d:%02d %s"):format(t.month, t.day, t.year, hour, t.min, t.sec, suffix)
+end
+
+vim.api.nvim_create_user_command("ObsidianPush", function()
+  local function fail(res)
+    notify(res.stdout .. res.stderr, vim.log.levels.ERROR)
+  end
+
+  git({ "pull", "--rebase", "--autostash" }, function(pull)
+    if pull.code ~= 0 then
+      return fail(pull)
+    end
+
+    git({ "add", "-A" }, function(add)
+      if add.code ~= 0 then
+        return fail(add)
+      end
+
+      local msg = "Commit from nvim on " .. timestamp()
+      git({ "commit", "-m", msg }, function(commit)
+        if commit.code ~= 0 then
+          if commit.stdout:match "nothing to commit" then
+            return notify "Vault already up to date"
+          end
+          return fail(commit)
+        end
+
+        git({ "push" }, function(push)
+          if push.code ~= 0 then
+            return fail(push)
+          end
+          notify "Vault synced"
+        end)
+      end)
+    end)
+  end)
+end, { desc = "Commit and push the Obsidian vault" })
+
+vim.keymap.set("n", "<leader>nS", "<cmd>ObsidianPush<cr>", opts)

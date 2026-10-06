@@ -19,7 +19,7 @@ local function attach()
     title_pos = "center",
   })
 
-  vim.fn.termopen({ "yazi", "--chooser-file", chooser }, {
+  vim.fn.termopen({ "spf", "--chooser-file", chooser }, {
     on_exit = function()
       if vim.api.nvim_win_is_valid(float_win) then
         vim.api.nvim_win_close(float_win, true)
@@ -31,7 +31,6 @@ local function attach()
           return
         end
 
-        -- yazi writes the selection rather than the hovered entry, which can be a directory
         local inserts, skipped = {}, {}
         for _, path in ipairs(lines) do
           path = vim.trim(path)
@@ -64,7 +63,7 @@ end
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "neomd-*.md" },
   callback = function()
-    vim.keymap.set("n", "<leader>a", attach, { buffer = true, desc = "neomd: attach file via yazi" })
+    vim.keymap.set("n", "<leader>a", attach, { buffer = true, desc = "neomd: attach file via spf" })
     vim.opt_local.spell = true
     vim.opt_local.spelllang = "de,en_us"
     vim.opt_local.wrap = true

@@ -8,14 +8,10 @@ obsidian.setup({
   workspaces = {
     { name = "notes", path = "~/Documents/obsidian-notes-vault" },
   },
-  notes_subdir = "notes",
+  notes_subdir = "0-Inbox",
   new_notes_location = "notes_subdir",
-  daily_notes = {
-    folder = "dailies",
-    date_format = "YYYY-MM-DD",
-  },
   templates = {
-    folder = "templates",
+    folder = "Templates",
     date_format = "YYYY-MM-DD",
     time_format = "HH:mm",
   },

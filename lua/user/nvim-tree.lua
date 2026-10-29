@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local obsidian_vault = vim.fn.expand "~/Documents/obsidian-notes-vault"
+
 local function my_on_attach(bufnr)
   local api = require "nvim-tree.api"
 
@@ -38,6 +40,9 @@ nvim_tree.setup({
   },
   filters = {
     dotfiles = false,
-    git_ignored = false
+    git_ignored = false,
+    custom = function(path)
+      return vim.startswith(path, obsidian_vault .. "/") and vim.startswith(vim.fs.basename(path), ".")
+    end,
   },
 })

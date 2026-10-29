@@ -26,6 +26,15 @@ obsidian.setup({
   attachments = {
     folder = "assets/imgs",
   },
+  frontmatter = {
+    func = function(note)
+      local out = require("obsidian.builtin").frontmatter(note)
+      out.area = out.area or ""
+      out.project = out.project or ""
+      return out
+    end,
+    sort = { "id", "aliases", "tags", "area", "project" },
+  },
   note_id_func = function(title)
     if title ~= nil then
       return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()

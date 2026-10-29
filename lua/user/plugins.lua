@@ -91,8 +91,8 @@ return packer.startup(function(use)
     commit = "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
     config = function()
         local custom_handlers = {}
-        local ok, obsidian_query = pcall(require, "obsidian-query")
-        if ok then
+        local ok, obsidian_query = pcall(require, "user.obsidian-query")
+        if ok and obsidian_query then
           custom_handlers.markdown = obsidian_query.handler
           custom_handlers.markdown_inline = require("obsidian-query.inline").handler
         end

@@ -21,6 +21,9 @@ obsidian.setup({
   picker = {
     name = "telescope.nvim",
   },
+  cache = {
+    enabled = true,
+  },
   -- render-markdown.nvim already handles concealing and highlighting
   ui = { enable = false },
   attachments = {

@@ -72,6 +72,7 @@ return packer.startup(function(use)
   use { "luckasRanarison/tailwind-tools.nvim", commit = "fbe982901d4508b0dcd80e07addf0fcb6dab6c49" }
   use { "onsails/lspkind-nvim" }
   use { "obsidian-nvim/obsidian.nvim", commit = "7a2b7caf41de196de66f27c1969d0d429810621a" }
+  use { "dpezto/obsidian-query.nvim", commit = "9c1de910ca42eb535326f2645f9654c62868ff1c" }
 
   -- ruby on rails
   use { "stevearc/dressing.nvim", commit = "2d7c2db2507fa3c4956142ee607431ddb2828639"}
@@ -89,7 +90,13 @@ return packer.startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true },
     commit = "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
     config = function()
-        require('render-markdown').setup({})
+        local custom_handlers = {}
+        local ok, obsidian_query = pcall(require, "obsidian-query")
+        if ok then
+          custom_handlers.markdown = obsidian_query.handler
+          custom_handlers.markdown_inline = require("obsidian-query.inline").handler
+        end
+        require('render-markdown').setup({ custom_handlers = custom_handlers })
     end,
   })
 
